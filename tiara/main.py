@@ -110,6 +110,7 @@ def main(test=None):
             params=params,
             tfidf=tfidfs,
             threads=args.threads,
+            quality=args.quality
         )
         start_time = time.time()
         results = classifier.classify(args.input, args.verbose)
@@ -385,6 +386,13 @@ def parse_arguments():
         "--gz",
         action="store_true",
         help="""Whether to gzip results or not.""",
+    )
+
+    parser.add_argument(
+        "-q",
+        "--quality",
+        action="store_true",
+        help="""Wheter to export the input fastq quality value to the output""",
     )
 
     return parser.parse_args(args=None if sys.argv[1:] else ["--help"])
